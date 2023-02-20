@@ -34,20 +34,30 @@ const server = http.createServer((req, res) => {
         cliente += PAGINA;
         console.log(cliente);
         statusCode = 200;
-        fs.readFile(cliente, (cliente, Page) => {
+        fs.readFile(cliente, (error, page) => {
+            if (error) {
+                
+                res.writeHead(404, {'Content-Type': mine});
+                return res.end("404 Not Found");
+            }
+
             res.writeHead(200, {'Content-Type': mine});
-            res.write(Page);
+            res.write(page);
             res.end();
         });
         
         
         
-    } //else if (url.pathname != '/') {
-        //code = 404;
-        //code_msg = "Not Found";
-        //console.log("ERROR")
-        //page = pagina_error;
-   // }
+    } else if(myURL.pathname == "/favicon.ico") {
+        console.log("No existe icono pequeño");
+
+
+    } else {
+        code = 404;
+        code_msg = "Not Found";
+        console.log("ERROR")
+        page = pagina_error;
+    }
     
 
 // Sacamos el recurso de los archivos solicitados
