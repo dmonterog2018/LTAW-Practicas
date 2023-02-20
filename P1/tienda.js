@@ -6,12 +6,17 @@ const http = require('http');
 const fs = require('fs');
 const url = require('url');
 
+
 // Creamos el servidor 
 
 const PUERTO = 9000;
+const PAGINA = 'tienda_comida.html';
+const ESTILO = 'tienda_comida.css';
 
 const server = http.createServer((req, res) => {
-    console.log("Petición recibida!");
+    console.log("Petición recibida del cliente!");
+    console.log("Esperando respuesta del servidor...");
+
 
 });
 
