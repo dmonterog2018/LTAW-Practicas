@@ -62,7 +62,7 @@ const server = http.createServer((req, res) => {
 
             res.writeHead(200, {'Content-Type': mine});
             console.log("200 OK");
-            console.log("Enviando CSS al cliente");
+            console.log("Enviado CSS al cliente");
             res.write(page);
             res.end();
             }
@@ -70,11 +70,13 @@ const server = http.createServer((req, res) => {
         });
 
     } else if(myURL.pathname == "/favicon.ico") {
-        file = 'favicon.ico'
-        console.log("ENTRAS?");
+        const icono = 'favicon.ico';
+        const favicon = fs.readFileSync(icono);
         res.writeHead(200, {'Content-Type': mine});
-        console.log("200 OK")
-
+        res.write(favicon);
+        res.end();
+        console.log("El archivo solicitado: " + icono + " ,ha sido insertado como icono");
+        
 
     } else {
         code = 404;
@@ -101,3 +103,7 @@ console.log("<====== ESPERANDO CLIENTE =====>");
 
 server.listen(PUERTO);
 
+//favicon = 'favicon.ico'
+        //console.log("ENTRAS?");
+        //res.writeHead(200, {'Content-Type': mine});
+        //console.log("200 OK");
