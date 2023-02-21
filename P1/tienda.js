@@ -12,14 +12,15 @@ const url = require('url');
 const PUERTO = 9001;
 const PAGINA = 'tienda_comida.html';
 const ESTILO = 'style.css';
-const pagina_error = 'error_404,jpg';
+const pagina_error = '404_error.jpg';
 
 const mine = {
     "html" : "text/html",
     "css" : "text/css",
-    "ico" : "image/ico"
+    "ico" : "image/ico",
+    "jpg" : "image/jpg"
 };
-
+const error404 = fs.readFileSync(pagina_error);
 const server = http.createServer((req, res) => {
 
     let myURL = new URL(req.url, 'http://' + req.headers['host']);
@@ -34,7 +35,9 @@ const server = http.createServer((req, res) => {
             if (error) {
                 
                 res.writeHead(404, {'Content-Type': mine});
+                res.write(error404);
                 return res.end("404 Not Found");
+
                 
             }else{
 
@@ -81,8 +84,10 @@ const server = http.createServer((req, res) => {
     } else {
         code = 404;
         code_msg = "Not Found";
-        console.log("ERROR");
-        page = pagina_error;
+        console.log("Error 404. Pagina no encontrada");
+        res.writeHead(404, {'Content-Type': mine});
+        res.write(error404);
+        return res.end("404 Not Found");
     }
     
 
