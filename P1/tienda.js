@@ -23,10 +23,9 @@ const mine = {
 const server = http.createServer((req, res) => {
 
     let myURL = new URL(req.url, 'http://' + req.headers['host']);
-    console.log("La URL del recurso es: " + myURL.href);
+    //console.log("La URL del recurso es: " + myURL.href);
     
     let cliente = "";
-    console.log(myURL.pathname);
     if(myURL.pathname == '/'){
         cliente += PAGINA;
         console.log("Solicitado por el cliente: " + cliente);
@@ -40,8 +39,8 @@ const server = http.createServer((req, res) => {
             }else{
 
             res.writeHead(200, {'Content-Type': mine});
-            console.log("200 OK");
-            console.log("Enviando pagina principal al cliente");
+            console.log("<=== 200 OK ===>");
+            console.log("<=== Enviando pagina principal al cliente ===>");
             res.write(page);
             res.end();
             }
@@ -51,7 +50,7 @@ const server = http.createServer((req, res) => {
         
     } else if (myURL.pathname == "/style.css") {
         cliente += ESTILO;
-        console.log("Solicitado CSS: " + cliente);
+        console.log("Solicitado CSS por el cliente: " + cliente);
         fs.readFile(cliente, (error, page) => {
             if (error) {
                 
@@ -61,8 +60,8 @@ const server = http.createServer((req, res) => {
             }else{
 
             res.writeHead(200, {'Content-Type': mine});
-            console.log("200 OK");
-            console.log("Enviado CSS al cliente");
+            console.log("<=== 200 OK ===>");
+            console.log("<=== Enviado CSS al cliente ===>");
             res.write(page);
             res.end();
             }
@@ -71,6 +70,7 @@ const server = http.createServer((req, res) => {
 
     } else if(myURL.pathname == "/favicon.ico") {
         const icono = 'favicon.ico';
+        console.log("Solicitado favicon por el cliente: " + cliente);
         const favicon = fs.readFileSync(icono);
         res.writeHead(200, {'Content-Type': mine});
         res.write(favicon);
