@@ -12,7 +12,7 @@ const url = require('url');
 const PUERTO = 9001;
 const PAGINA = 'tienda_comida.html';
 const ESTILO = 'style.css';
-const pagina_error = '404_error.jpg';
+const pagina_error = 'error_404.html';
 
 const mine = {
     "html" : "text/html",
