@@ -13,7 +13,7 @@ const PUERTO = 9001;
 const PAGINA = 'tienda_comida.html';
 const ESTILO = 'style.css';
 const pagina_error = 'error_404.html';
-const icono = 'favicon.ico';
+const icono = 'favicon2.ico';
 const fuente = 'monaco.ttf';
 
 const mine = {
@@ -27,7 +27,7 @@ const error404 = fs.readFileSync(pagina_error);
 const server = http.createServer((req, res) => {
 
     let myURL = new URL(req.url, 'http://' + req.headers['host']);
-    //console.log("La URL del recurso es: " + myURL.href);
+    console.log("La URL del recurso es: " + myURL.href);
     
     let cliente = "";
     if(myURL.pathname == '/'){
@@ -74,7 +74,7 @@ const server = http.createServer((req, res) => {
         
         });
 
-    } else if(myURL.pathname == "/favicon.ico") {
+    } else if(myURL.pathname == "/favicon2.ico") {
         
         console.log("Solicitado favicon por el cliente: " + cliente);
         const favicon = fs.readFileSync(icono);

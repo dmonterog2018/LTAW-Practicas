@@ -12,4 +12,6 @@ body{
 
 h1 {
   font-family: 'monaco';
+  text-align: center;
+  font-size: 30px;
 }
