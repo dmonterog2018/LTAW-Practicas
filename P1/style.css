@@ -1,3 +1,15 @@
+
+@font-face
+{
+   font-family: "monaco";
+   src: url("monaco.ttf");
+}
+
+
 body{
-    background-color: rgb(5, 5, 5);
+    background: linear-gradient(to right, rgb(175, 50, 50), rgb(109, 78, 83));
+  }
+
+h1 {
+  font-family: 'monaco';
 }
