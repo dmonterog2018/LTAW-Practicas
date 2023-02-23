@@ -24,7 +24,7 @@ const error404 = fs.readFileSync(pagina_error);
 const server = http.createServer((req, res) => {
 
     let myURL = new URL(req.url, 'http://' + req.headers['host']);
-    //console.log("La URL del recurso es: " + myURL.href);
+    console.log("La URL del recurso es: " + myURL.href);
     
     let cliente = "";
     if(myURL.pathname == '/'){
@@ -54,7 +54,7 @@ const server = http.createServer((req, res) => {
     } else if (myURL.pathname == "/style.css") {
         cliente += ESTILO;
         console.log("Solicitado CSS por el cliente: " + cliente);
-        fs.readFile(cliente, (error, page) => {
+        fs.readFile(ESTILO, (error, page) => {
             if (error) {
                 
                 res.writeHead(404, {'Content-Type': mine});
@@ -91,12 +91,15 @@ const server = http.createServer((req, res) => {
     }
     
 
+
+
+});
+
 // Sacamos el recurso de los archivos solicitados
 
 //recurso = cliente.split(".")[1];
 //console.log("Recurso solicitado por el cliente: " + cliente);
 
-});
 
 // Activamos la escucha y mensaje de activación
 
@@ -107,8 +110,3 @@ console.log("<====== ESPERANDO CLIENTE =====>");
 
 
 server.listen(PUERTO);
-
-//favicon = 'favicon.ico'
-        //console.log("ENTRAS?");
-        //res.writeHead(200, {'Content-Type': mine});
-        //console.log("200 OK");
