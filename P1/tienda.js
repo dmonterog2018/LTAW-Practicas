@@ -93,10 +93,22 @@ const server = http.createServer((req, res) => {
         res.end();
         console.log("El archivo solicitado: " + fuente + " ,ha sido insertado como fuente");
     
+    } else if(myURL.pathname == "/producto1.html" , "/producto2.html", "/producto3.html") {
+        const producto = myURL.pathname.split("/")[1];
+        fs.readFile(producto, (error, pruductos) => {
+        console.log("Solicitado producto por el cliente: " + cliente);
+        res.writeHead(200, {'Content-Type': mine});
+        console.log("<=== 200 OK ===>");
+        console.log("<=== Enviado producto al cliente ===>");
+        res.write(pruductos);
+        res.end();
+        });
+
     } else {
         code = 404;
         code_msg = "Not Found";
         console.log("Error 404. Pagina no encontrada");
+        console.log(myURL.pathname.split("/")[1]);
         res.writeHead(404, {'Content-Type': mine});
         res.write(error404);
         return res.end("404 Not Found");
