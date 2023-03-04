@@ -67,7 +67,6 @@ const server = http.createServer((req, res) => {
             }else{
 
             res.writeHead(200, {'css' : mime});
-            console.log(mime);
             console.log("<=== 200 OK ===>");
             console.log("<=== Enviado CSS al cliente ===>");
             res.write(page);
