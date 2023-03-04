@@ -120,7 +120,7 @@ const server = http.createServer((req, res) => {
 
 });
 
-// Sacamos el recurso de los archivos solicitados
+
 
 //recurso = cliente.split(".")[1];
 //console.log("Recurso solicitado por el cliente: " + cliente);
