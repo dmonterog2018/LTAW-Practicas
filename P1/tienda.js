@@ -21,6 +21,7 @@ const server = http.createServer((req, res) => {
 
     let myURL = new URL(req.url, 'http://' + req.headers['host']);
     console.log("La URL del recurso es: " + myURL.href);
+   
     
     let cliente = "";
     if(myURL.pathname == '/'){
@@ -97,22 +98,22 @@ const server = http.createServer((req, res) => {
         res.end();
         });
 
-    } else if(myURL.pathname == "/producto_1.jpg" & "/producto_2.jpg" & "/producto_3.jpg") {
-       
-        const split = myURL.pathname.split("/")[1];
+    } else if(myURL.pathname == '/Fotos/producto_1.jpg' | myURL.pathname == '/Fotos/producto_2.jpg' | myURL.pathname == '/Fotos/producto_2.jpg' | myURL.pathname == '/Fotos/producto_3.jpg') {
+        const split = myURL.href.split("9000/")[1];
+        console.log(split);
         const imagenes = fs.readFileSync(split);
         res.writeHead(200, {'Content-Type': 'image/jpg'});
         res.write(imagenes);
         res.end();
         console.log('<=== Imagen producto solicitada ===>');
-        
+
 
 
     }else {
         code = 404;
         code_msg = "Not Found";
         console.log("Error 404. Pagina no encontrada");
-        console.log(myURL.pathname.split("/")[1]);
+        console.log(myURL.pathname.split("/")[2]);
         res.writeHead(404, {'Content-Type': 'text/html'});
         res.write(error404);
         return res.end("404 Not Found");
