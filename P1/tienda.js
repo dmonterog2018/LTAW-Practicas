@@ -9,20 +9,12 @@ const url = require('url');
 
 // Creamos el servidor 
 
-const PUERTO = 9001;
+const PUERTO = 9000;
 const PAGINA = 'tienda_comida.html';
 const ESTILO = 'style.css';
 const pagina_error = 'error_404.html';
 const icono = 'favicon2.ico';
 const fuente = 'monaco.ttf';
-
-const mime = {
-    "html" : "text/html",
-    "css" : "text/css",
-    "ico" : "image/ico",
-    "jpg" : "image/jpg",
-    "ttf" : "font/ttf"
-};
 
 const error404 = fs.readFileSync(pagina_error);
 const server = http.createServer((req, res) => {
@@ -38,14 +30,14 @@ const server = http.createServer((req, res) => {
         fs.readFile(cliente, (error, page) => {
             if (error) {
                 
-                res.writeHead(404, {'Content-Type': mime});
+                res.writeHead(404, {'Content-Type': 'text/html'});
                 res.write(error404);
                 return res.end("404 Not Found");
 
                 
             }else{
 
-            res.writeHead(200, {'Content-Type': mime});
+            res.writeHead(200, {'Content-Type': 'text/html'});
             console.log("<=== 200 OK ===>");
             console.log("<=== Enviando pagina principal al cliente ===>");
             res.write(page);
@@ -61,12 +53,12 @@ const server = http.createServer((req, res) => {
         fs.readFile(ESTILO, (error, page) => {
             if (error) {
                 
-                res.writeHead(404, {'Content-Type': mime});
+                res.writeHead(404, {'Content-Type': 'text/html'});
                 return res.end("404 Not Found");
                 
             }else{
 
-            res.writeHead(200, {'css' : mime});
+            res.writeHead(200, {'Content-Type' : 'text/css'});
             console.log("<=== 200 OK ===>");
             console.log("<=== Enviado CSS al cliente ===>");
             res.write(page);
@@ -79,7 +71,7 @@ const server = http.createServer((req, res) => {
         
         console.log("Solicitado favicon por el cliente: " + cliente);
         const favicon = fs.readFileSync(icono);
-        res.writeHead(200, {'Content-Type': mime});
+        res.writeHead(200, {'Content-Type': 'image/ico'});
         res.write(favicon);
         res.end();
         console.log("El archivo solicitado: " + icono + " ,ha sido insertado como icono");
@@ -89,7 +81,7 @@ const server = http.createServer((req, res) => {
         
         console.log("Solicitado fuente por el cliente: " + cliente);
         const fonts = fs.readFileSync(fuente);
-        res.writeHead(200, {'Content-Type': mime});
+        res.writeHead(200, {'Content-Type': 'font/ttf'});
         res.write(fonts);
         res.end();
         console.log("El archivo solicitado: " + fuente + " ,ha sido insertado como fuente");
@@ -98,19 +90,30 @@ const server = http.createServer((req, res) => {
         const producto = myURL.pathname.split("/")[1];
         fs.readFile(producto, (error, pruductos) => {
         console.log("Solicitado producto por el cliente: " + cliente);
-        res.writeHead(200, {'Content-Type': mime});
+        res.writeHead(200, {'Content-Type': 'text/html'});
         console.log("<=== 200 OK ===>");
         console.log("<=== Enviado producto al cliente ===>");
         res.write(pruductos);
         res.end();
         });
 
-    } else {
+    } else if(myURL.pathname == "/producto_1.jpg" & "/producto_2.jpg" & "/producto_3.jpg") {
+       
+        const split = myURL.pathname.split("/")[1];
+        const imagenes = fs.readFileSync(split);
+        res.writeHead(200, {'Content-Type': 'image/jpg'});
+        res.write(imagenes);
+        res.end();
+        console.log('<=== Imagen producto solicitada ===>');
+        
+
+
+    }else {
         code = 404;
         code_msg = "Not Found";
         console.log("Error 404. Pagina no encontrada");
         console.log(myURL.pathname.split("/")[1]);
-        res.writeHead(404, {'Content-Type': mime});
+        res.writeHead(404, {'Content-Type': 'text/html'});
         res.write(error404);
         return res.end("404 Not Found");
     }
