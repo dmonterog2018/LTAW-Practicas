@@ -16,13 +16,6 @@ const pagina_error = 'error_404.html';
 const icono = 'favicon2.ico';
 const fuente = 'monaco.ttf';
 
-const mime = {
-    "html" : "text/html",
-    "css" : "text/css",
-    "ico" : "image/ico",
-    "jpg" : "image/jpg",
-    "ttf" : "font/ttf"
-};
 
 const error404 = fs.readFileSync(pagina_error);
 const server = http.createServer((req, res) => {
