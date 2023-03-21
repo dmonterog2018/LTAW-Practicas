@@ -14,7 +14,7 @@ h1 {
   font-family: 'monaco';
   font-size: 35px ;
   margin-top: 50px;
-  margin-left: 20cm;
+  margin-left: 20.8cm;
   border: double;
   border-width: 0.3cm;
   border-color: rgb(240, 5, 5);
@@ -25,19 +25,40 @@ h1 {
 
 .contenedor {
   display: flex;
-  justify-content: center; 
-  text-align: center;
+  justify-content: space-around;
+  align-items: center;
+
 }
 
 button {
-  margin: 0 10px;
-  width: 350px;
-  height: 500px;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 400px;
+  height: 530px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  
 }
 
-button img {
-  object-fit: cover; /* ajusta la imagen para cubrir el botón sin deformarse */
-  width: 100%; /* asegura que la imagen cubra todo el botón */
-  height: 100%; /* asegura que la imagen cubra todo el botón */
+button:hover {
+  background-color: #f2f2f2;
+}
+
+img {
+  width: 400px;
+  height: 500px;
+  object-fit: cover;
+
+}
+a {
+  text-decoration: none; 
+}
+span {
+
+  font-family: 'monaco';
+  font-size: 35px ;
+  color:aliceblue ;
+  
 }
