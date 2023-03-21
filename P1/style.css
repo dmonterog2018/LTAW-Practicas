@@ -22,3 +22,22 @@ h1 {
   color:aliceblue ;
   display: inline-block;
 }
+
+.contenedor {
+  display: flex;
+  justify-content: center; 
+  text-align: center;
+}
+
+button {
+  margin: 0 10px;
+  width: 350px;
+  height: 500px;
+  overflow: hidden;
+}
+
+button img {
+  object-fit: cover; /* ajusta la imagen para cubrir el botón sin deformarse */
+  width: 100%; /* asegura que la imagen cubra todo el botón */
+  height: 100%; /* asegura que la imagen cubra todo el botón */
+}
