@@ -48,10 +48,10 @@ const server = http.createServer((req, res) => {
         });
         
         
-    } else if (myURL.pathname == "/style.css") {
-        cliente += ESTILO;
+    } else if (myURL.pathname == "/style.css" | myURL.pathname == "/style1.css" |myURL.pathname == "/style2.css"| myURL.pathname == "/style3.css" ) {
+        cliente += myURL.pathname.split("/")[1];
         console.log("Solicitado CSS por el cliente: " + cliente);
-        fs.readFile(ESTILO, (error, page) => {
+        fs.readFile(cliente, (error, page) => {
             if (error) {
                 
                 res.writeHead(404, {'Content-Type': 'text/html'});
