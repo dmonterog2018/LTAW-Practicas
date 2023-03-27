@@ -126,11 +126,6 @@ const server = http.createServer((req, res) => {
 
 
 
-//recurso = cliente.split(".")[1];
-//console.log("Recurso solicitado por el cliente: " + cliente);
-
-
-// Activamos la escucha y mensaje de activación
 
 console.log("<====== TIENDA ACTIVADA =====>");
 console.log("<====== MODULOS DE COMIDA CARGADOS =====>");
