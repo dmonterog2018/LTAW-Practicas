@@ -1,3 +1,21 @@
+@font-face
+{
+   font-family: "monaco";
+   src: url("monaco.ttf");
+}
+
+
 body {
     background-color: blueviolet;
 }
+
+button {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 2cm;
+    font-family: 'monaco';
+    font-size: 3.2em;
+    padding: 15px 25px;
+  }
