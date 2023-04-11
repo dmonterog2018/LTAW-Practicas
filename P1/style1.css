@@ -26,7 +26,21 @@ body {
 
 }
 
+.titulo {
+ font-size: 30px;
+ font-family: 'monaco';
+}
 
+<<<<<<< HEAD
+=======
+.descripcion {
+
+font-size: medium;
+font-family: 'monaco';
+
+}
+  
+>>>>>>> 90e63d1a35ff064cb95140a46448c40e11c03f4b
 #boton1 {
 
     position: fixed;
