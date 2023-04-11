@@ -10,8 +10,17 @@ body {
 }
 
 
+.titulo {
+ font-size: 30px;
+ font-family: 'monaco';
+}
 
-  
+.descripcion {
+
+font-size: medium;
+font-family: 'monaco';
+
+}
   
 #boton1 {
 
