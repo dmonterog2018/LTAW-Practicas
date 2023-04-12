@@ -62,3 +62,68 @@ span {
   color:aliceblue ;
   
 }
+
+.inicio-sesion {
+  width: 160px;
+  height: 20px;
+  float: right;
+  margin-top: 1.5cm;
+  margin-right: 3cm;
+
+}
+
+.casa {
+  width: 160px;
+  height: 80px;
+  float: right;
+  margin-top: 0.1cm;
+  margin-right: 3cm;
+}
+
+
+
+
+.login-container {
+  margin: 0 auto;
+  width: 300px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+  font-family: Arial, sans-serif;
+  margin-top: 2cm;
+}
+
+.login-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.login-container label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+ input[type="text"],
+ input[type="password"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+input[type="submit"] {
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+

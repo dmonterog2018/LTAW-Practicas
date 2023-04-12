@@ -11,10 +11,10 @@ const url = require('url');
 
 const PUERTO = 9000;
 const PAGINA = 'tienda_comida.html';
-const ESTILO = 'style.css';
 const pagina_error = 'error_404.html';
 const icono = 'favicon2.ico';
 const fuente = 'monaco.ttf';
+
 
 const error404 = fs.readFileSync(pagina_error);
 const server = http.createServer((req, res) => {
@@ -87,7 +87,7 @@ const server = http.createServer((req, res) => {
         res.end();
         console.log("El archivo solicitado: " + fuente + " ,ha sido insertado como fuente");
     
-    } else if(myURL.pathname == "/producto1.html" | myURL.pathname == "/producto2.html" | myURL.pathname == "/producto3.html" ) {
+    } else if(myURL.pathname == "/producto1.html" | myURL.pathname == "/producto2.html" | myURL.pathname == "/producto3.html" | myURL.pathname == "/inicio.html") {
         const producto = myURL.pathname.split("/")[1];
         fs.readFile(producto, (error, pruductos) => {
         console.log("Solicitado producto por el cliente: " + cliente);
