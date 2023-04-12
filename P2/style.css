@@ -1,0 +1,64 @@
+
+@font-face
+{
+   font-family: "monaco";
+   src: url("monaco.ttf");
+}
+
+
+body{
+    background: linear-gradient(to right, rgb(175, 50, 50), rgb(109, 78, 83));
+  }
+
+h1 {
+  font-family: 'monaco';
+  font-size: 35px ;
+  margin-top: 50px;
+  margin-left: 20.8cm;
+  border: double;
+  border-width: 0.3cm;
+  border-color: rgb(240, 5, 5);
+  border-radius: 15px;
+  color:aliceblue ;
+  display: inline-block;
+}
+
+.contenedor {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+}
+
+button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 400px;
+  height: 530px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  
+}
+
+button:hover {
+  background-color: #f2f2f2;
+}
+
+img {
+  width: 400px;
+  height: 500px;
+  object-fit: cover;
+
+}
+a {
+  text-decoration: none; 
+}
+span {
+
+  font-family: 'monaco';
+  font-size: 35px ;
+  color:aliceblue ;
+  
+}

@@ -1,0 +1,48 @@
+@font-face
+{
+   font-family: "monaco";
+   src: url("monaco.ttf");
+}
+
+body {
+    
+    background-image: url(https://github.com/dmonterog2018/LTAW-Practicas/raw/main/P1/Fotos/fondoimagen.jpg) ;
+}
+
+.titulo {
+    font-family: 'monaco';
+    text-decoration: underline;
+    font-size: 50px;
+    position: fixed;
+    left: 43%;
+    margin-top: 0.3cm;
+}
+  
+.descripcion {
+    font-family: 'Lucida Sans';
+    font-size: 12px;
+    position: fixed;
+    margin-top: 2cm;
+
+}
+
+
+#boton1 {
+
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 2cm;
+    font-family: 'monaco';
+    font-size: 2.5em;
+    padding: 13px 23px;
+  }
+
+#boton2{
+    font-family: 'monaco';
+    position: fixed;
+    left: 44%;
+    font-size: 2.5em;
+    margin-top: 3.5cm;
+}
