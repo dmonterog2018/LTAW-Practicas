@@ -4,7 +4,7 @@
 
 const http = require('http');
 const fs = require('fs');
-const url = require('url');
+
 
 
 // Creamos el servidor 
@@ -117,8 +117,8 @@ const server = http.createServer((req, res) => {
         lista["usuarios"].forEach(element => {
         if (user_name == element["usuario"] && user_pass == element["contra"]) {
             console.log("USUARIO CORRECTO");
-        
-           
+            res.writeHead(302, { 'Location': '/' });
+            res.end();
         } else {
             console.log("Usuario o contraseña incorrecta");
         }
@@ -133,7 +133,7 @@ const server = http.createServer((req, res) => {
         res.write(error404);
         return res.end("404 Not Found");
     }
-    
+
 
 });
 
