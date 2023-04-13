@@ -109,6 +109,21 @@ const server = http.createServer((req, res) => {
 
 
 
+    }else if (myURL.pathname == '/login') {
+        user_name = myURL.searchParams.get('usuario');
+        user_pass = myURL.searchParams.get('contra');
+        lista_json = fs.readFileSync("tienda.json");
+        lista = JSON.parse(lista_json);
+        lista["usuarios"].forEach(element => {
+        if (user_name == element["usuario"] && user_pass == element["contra"]) {
+            console.log("USUARIO CORRECTO");
+        
+           
+        } else {
+            console.log("Usuario o contraseña incorrecta");
+        }
+        });
+    
     }else {
         code = 404;
         code_msg = "Not Found";

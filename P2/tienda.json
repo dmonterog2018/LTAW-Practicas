@@ -1,20 +1,9 @@
-[
-    {
-        "nombre" : "Chorizo Extra",
-        "descripcion" :"",
-        "precio": "10,95",
-        "stock": "3"
-    },
-    {
-        "nombre" : "Chorizo Lonchas",
-        "descripcion" :"",
-        "precio": "10,95",
-        "stock": "3"
-    },
-    {
-        "nombre" : "Longaniza Iberica",
-        "descripcion" :"",
-        "precio": "10,95",
-        "stock": "3"
-    }
-]
+{
+    "usuarios":
+    [{
+        "usuario" : "dmg",
+        "nombrereal": "Diego",
+        "contra": "12345"
+
+    }]
+}
