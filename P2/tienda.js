@@ -16,13 +16,23 @@ const icono = 'favicon2.ico';
 const fuente = 'monaco.ttf';
 
 
+
 const error404 = fs.readFileSync(pagina_error);
 const server = http.createServer((req, res) => {
 
     let myURL = new URL(req.url, 'http://' + req.headers['host']);
     console.log("La URL del recurso es: " + myURL.href);
-   
+    const cookie = req.headers.cookie;
     
+    
+    if(cookie){    
+    console.log("Cookie: " + cookie );
+
+    }else{
+        console.log("Petición sin cookie");
+    }
+        
+
     let cliente = "";
     if(myURL.pathname == '/'){
         cliente += PAGINA;

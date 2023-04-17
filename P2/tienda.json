@@ -5,5 +5,10 @@
         "nombrereal": "Diego",
         "contra": "12345"
 
+    },
+    {   "usuario" : "root",
+        "nombrereal": "Root",
+        "contra": "0000"
+
     }]
 }
