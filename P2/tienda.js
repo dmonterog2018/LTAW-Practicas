@@ -14,10 +14,42 @@ const PAGINA = 'tienda_comida.html';
 const pagina_error = 'error_404.html';
 const icono = 'favicon2.ico';
 const fuente = 'monaco.ttf';
-
-
-
 const error404 = fs.readFileSync(pagina_error);
+
+function get_user(req) {
+
+    //-- Leer la Cookie recibida
+    const cookie = req.headers.cookie;
+  
+    //-- Hay cookie
+    if (cookie) {
+      
+      //-- Obtener un array con todos los pares nombre-valor
+      let pares = cookie.split(";");
+      
+      //-- Variable para guardar el usuario
+      let user;
+  
+      //-- Recorrer todos los pares nombre-valor
+      pares.forEach((element, index) => {
+  
+        //-- Obtener los nombres y valores por separado
+        let [nombre, valor] = element.split('=');
+  
+        //-- Leer el usuario
+        //-- Solo si el nombre es 'user'
+        if (nombre.trim() === 'user') {
+          user = valor;
+        }
+      });
+  
+      //-- Si la variable user no está asignada
+      //-- se devuelve null
+      return user || null;
+      
+    }
+  }
+
 const server = http.createServer((req, res) => {
 
     let myURL = new URL(req.url, 'http://' + req.headers['host']);
@@ -28,7 +60,7 @@ const server = http.createServer((req, res) => {
     if(cookie){    
     console.log("Cookie: " + cookie );
 
-    }else{
+      }else{
         console.log("Petición sin cookie");
     }
         
@@ -127,8 +159,13 @@ const server = http.createServer((req, res) => {
         lista["usuarios"].forEach(element => {
         if (user_name == element["usuario"] && user_pass == element["contra"]) {
             console.log("USUARIO CORRECTO");
+            res.setHeader('Set-Cookie', "user = " + user_name);
             res.writeHead(302, { 'Location': '/' });
             res.end();
+            
+            
+            //console.log("User: " + user);
+
         } else {
             console.log("Usuario o contraseña incorrecta");
         }
