@@ -160,8 +160,17 @@ const server = http.createServer((req, res) => {
         if (user_name == element["usuario"] && user_pass == element["contra"]) {
             console.log("USUARIO CORRECTO");
             res.setHeader('Set-Cookie', "user = " + user_name);
-            res.writeHead(302, { 'Location': '/' });
-            res.end();
+            fs.readFile('tienda_comida.html', function (err, data) {
+                if (err) throw err;
+                let paginaPrincipal = data.toString();
+                paginaPrincipal = paginaPrincipal.replace("<h2>USUARIO : NO REGISTRADO</h2>", "<h2>USUARIO INICIADO: " + user_name + "</h2>");
+                res.writeHead(200, {'Content-Type': 'text/html'});
+                res.write(paginaPrincipal);
+                res.end();
+            });
+            //cliente = cliente.replace("tienda_comida.html", "<a>USUARIO INICIADO: " + user_name + "</a>");
+            //res.writeHead(302, { 'Location': '/' });
+            //res.end();
             
             
             //console.log("User: " + user);
