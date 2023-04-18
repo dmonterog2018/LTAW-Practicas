@@ -16,39 +16,7 @@ const icono = 'favicon2.ico';
 const fuente = 'monaco.ttf';
 const error404 = fs.readFileSync(pagina_error);
 
-function get_user(req) {
 
-    //-- Leer la Cookie recibida
-    const cookie = req.headers.cookie;
-  
-    //-- Hay cookie
-    if (cookie) {
-      
-      //-- Obtener un array con todos los pares nombre-valor
-      let pares = cookie.split(";");
-      
-      //-- Variable para guardar el usuario
-      let user;
-  
-      //-- Recorrer todos los pares nombre-valor
-      pares.forEach((element, index) => {
-  
-        //-- Obtener los nombres y valores por separado
-        let [nombre, valor] = element.split('=');
-  
-        //-- Leer el usuario
-        //-- Solo si el nombre es 'user'
-        if (nombre.trim() === 'user') {
-          user = valor;
-        }
-      });
-  
-      //-- Si la variable user no está asignada
-      //-- se devuelve null
-      return user || null;
-      
-    }
-  }
 
 const server = http.createServer((req, res) => {
 
@@ -159,26 +127,28 @@ const server = http.createServer((req, res) => {
         lista["usuarios"].forEach(element => {
         if (user_name == element["usuario"] && user_pass == element["contra"]) {
             console.log("USUARIO CORRECTO");
+            comprobacion = true;
             res.setHeader('Set-Cookie', "user = " + user_name);
             fs.readFile('tienda_comida.html', function (err, data) {
                 if (err) throw err;
-                let paginaPrincipal = data.toString();
-                paginaPrincipal = paginaPrincipal.replace("<h2>USUARIO : NO REGISTRADO</h2>", "<h2>USUARIO INICIADO: " + user_name + "</h2>");
+                paginaprincipal = data.toString();
+                console.log("hola");
+                paginaprincipal = paginaprincipal.replace("<h2>USUARIO : INICIE SESION</h2>", "<h2>USUARIO INICIADO: " + user_name + "</h2>");
                 res.writeHead(200, {'Content-Type': 'text/html'});
-                res.write(paginaPrincipal);
+                res.write(paginaprincipal);
                 res.end();
             });
-            //cliente = cliente.replace("tienda_comida.html", "<a>USUARIO INICIADO: " + user_name + "</a>");
-            //res.writeHead(302, { 'Location': '/' });
-            //res.end();
-            
-            
-            //console.log("User: " + user);
 
-        } else {
+        } else{
             console.log("Usuario o contraseña incorrecta");
+            fs.readFile('noregistrado.html', function (error2, data2) {
+                if (error2) throw error2;
+                res.writeHead(200, {'Content-Type': 'text/html'});
+                res.write(data2);
+                res.end();
+            });     
         }
-        });
+    });
     
     }else {
         code = 404;

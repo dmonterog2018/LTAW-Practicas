@@ -22,6 +22,10 @@ h1 {
   color:aliceblue ;
   display: inline-block;
 }
+h2 {
+  font-family: 'monaco';
+  font-size: 35px ;
+}
 
 .contenedor {
   display: flex;
