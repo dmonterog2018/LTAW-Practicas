@@ -120,14 +120,20 @@ const server = http.createServer((req, res) => {
 
 
     }else if (myURL.pathname == '/login') {
+        let usuariodetectado = false;
         user_name = myURL.searchParams.get('usuario');
         user_pass = myURL.searchParams.get('contra');
         lista_json = fs.readFileSync("tienda.json");
         lista = JSON.parse(lista_json);
-        lista["usuarios"].forEach(element => {
-        if (user_name == element["usuario"] && user_pass == element["contra"]) {
-            console.log("USUARIO CORRECTO");
-            comprobacion = true;
+        for(let i=0; i< lista["usuarios"].length; i++) {
+            let element = lista["usuarios"][i];
+            if (user_name == element["usuario"] && user_pass == element["contra"]){
+                console.log("CORRECTO");
+                usuariodetectado = true;
+                break;
+            }
+        }if (usuariodetectado) {
+            console.log("El usuario ha sido encontrado en la lista.");
             res.setHeader('Set-Cookie', "user = " + user_name);
             fs.readFile('tienda_comida.html', function (err, data) {
                 if (err) throw err;
@@ -138,8 +144,7 @@ const server = http.createServer((req, res) => {
                 res.write(paginaprincipal);
                 res.end();
             });
-
-        } else{
+        } else {
             console.log("Usuario o contraseña incorrecta");
             fs.readFile('noregistrado.html', function (error2, data2) {
                 if (error2) throw error2;
@@ -148,7 +153,7 @@ const server = http.createServer((req, res) => {
                 res.end();
             });     
         }
-    });
+    
     
     }else {
         code = 404;
