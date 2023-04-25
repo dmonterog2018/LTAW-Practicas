@@ -9,14 +9,22 @@ body {
    
   }
 
-h2 {
+h1 {
     font-family: 'monaco';
     font-size:40px;
     display: block;
     margin-left: 21cm;
 
 }
+h2 {
+  font-family: 'monaco';
+  font-size:40px;
+  display: block;
+  margin-left: 21cm;
+
+}
 h3 {
+  margin-top: 1.7cm;
     font-family: 'monaco';
     font-size:40px;
     display: block;
@@ -25,11 +33,22 @@ h3 {
 }
 
 #display {
-    margin-top: 2.3cm;
+    
     border: 3px solid black;
     border-style: dashed;
     padding: 10px;
     background-color: transparent;
     height:500px;
     overflow-y: scroll;
-  }
+}
+
+#msgentry {
+  border: 2px solid #4CAF50;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 18px;
+  color: #333;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  margin-left: 22cm;
+}

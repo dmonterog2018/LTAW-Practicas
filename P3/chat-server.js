@@ -3,8 +3,9 @@ const socketServer = require('socket.io').Server;
 const http = require('http');
 const express = require('express');
 const colors = require('colors');
-
+const currentDate = new Date();
 const PUERTO = 9000;
+
 
 //-- Crear una nueva aplciacion web
 const app = express();
@@ -39,16 +40,31 @@ io.on('connect', (socket) => {
     console.log('** CONEXIÓN TERMINADA **'.yellow);
   });  
 
-  //-- Mensaje recibido: Hacer eco
+  //-- Tipos de mensaje que podemos recibir
   socket.on("message", (msg)=> {
     console.log("Mensaje Recibido!: " + msg.blue);
 
     if (msg == '/help') {
         socket.send("La lista de comandos para nuestro chat son los siguientes: /list, /user, /hello y /date");
-    }
-    else if(msg == '/date') {
+    } else if(msg == '/list') {
+      const users = 'Número de usuarios conectados: ' + io.engine.clientsCount;
+      socket.send(users);
 
-    }else{
+    } else if(msg == '/date') {
+      
+      const dateString = 'La fecha actual es: ' + currentDate.toLocaleDateString();
+      socket.send(dateString);
+
+    } else if(msg == '/hour') {
+
+      const TimeString = 'La hora actual es: ' + currentDate.toLocaleTimeString();
+      socket.send(TimeString);
+    
+    } else if(msg == '/hello') {
+
+     socket.send('Bienvenido a nuestro chat, encantado de recibirte.')
+    
+    }else{ // Si no recibimos un mensaje de comando mandamos directamente un eco del mensaje para mostrar a los usuarios
         io.send(msg);
     }
  

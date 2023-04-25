@@ -1,15 +1,24 @@
 //-- Elementos del interfaz
 const button = document.getElementById("button");
 const display = document.getElementById("display");
-
+const usuario = document.getElementById("usuario");
 //-- Crear un websocket. Se establece la conexión con el servidor
 const socket = io();
+let username = "";
 
-
+usuario.onchange = (event) => {
+  event.preventDefault();
+  if (usuario.value) {
+    username = usuario.value;
+    console.log(username);
+    socket.send(username);
+  }
+  usuario.value = "";
+}
 
 socket.on("connect", () => {
   //-- Enviar mensaje inicial
-  socket.send("Te has conectado al chatPelinpe");
+  socket.send("Alguien se unió al chat");
 });  
 
 socket.on("disconnect", ()=> {
@@ -17,14 +26,19 @@ socket.on("disconnect", ()=> {
 })
 
 socket.on("message", (msg)=>{
-  display.innerHTML += '<p style="color:blue">' + msg + '</p>';
+  if (msg == username) {
+    display.innerHTML += '<p style="color:green">' + '· Te has registrado en el chat como: ' + username +'</p>';
+
+  }else if (msg !==username){
+    display.innerHTML += '<p style="color:blue">' + '· ' + username + ": " + msg + '</p>';
+  }
 });
 
 
-msg_entry.onchange = () => {
-    if (msg_entry.value)
-      socket.send(msg_entry.value);
+msgentry.onchange = () => {
+    if (msgentry.value)
+      socket.send(msgentry.value);
     
-    //-- Borrar el mensaje actual
-    msg_entry.value = "";
+    // Borrar el mensaje actual
+    msgentry.value = "";
   }
