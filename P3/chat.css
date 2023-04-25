@@ -1,0 +1,35 @@
+@font-face
+{
+   font-family: "monaco";
+   src: url("monaco.ttf");
+}
+body {
+    background-image: url('fondochat4.jpg');
+    background-size: cover;
+   
+  }
+
+h2 {
+    font-family: 'monaco';
+    font-size:40px;
+    display: block;
+    margin-left: 21cm;
+
+}
+h3 {
+    font-family: 'monaco';
+    font-size:40px;
+    display: block;
+    margin-left: 22cm;
+
+}
+
+#display {
+    margin-top: 2.3cm;
+    border: 3px solid black;
+    border-style: dashed;
+    padding: 10px;
+    background-color: transparent;
+    height:500px;
+    overflow-y: scroll;
+  }
