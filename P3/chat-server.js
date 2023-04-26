@@ -44,28 +44,29 @@ io.on('connect', (socket) => {
   socket.on("message", (msg)=> {
     console.log("Mensaje Recibido!: " + msg.blue);
 
-    if (msg == '/help') {
+    if (msg.split("/")[1] == 'help') {
         socket.send("La lista de comandos para nuestro chat son los siguientes: /list, /user, /hello y /date");
-    } else if(msg == '/list') {
+    } else if(msg.split("/")[1] == 'list') {
       const users = 'Número de usuarios conectados: ' + io.engine.clientsCount;
       socket.send(users);
 
-    } else if(msg == '/date') {
+    } else if(msg.split("/")[1] == 'date') {
       
       const dateString = 'La fecha actual es: ' + currentDate.toLocaleDateString();
       socket.send(dateString);
 
-    } else if(msg == '/hour') {
+    } else if(msg.split("/")[1] == 'hour') {
 
       const TimeString = 'La hora actual es: ' + currentDate.toLocaleTimeString();
       socket.send(TimeString);
     
-    } else if(msg == '/hello') {
+    } else if(msg.split("/")[1] == 'hello') {
 
      socket.send('Bienvenido a nuestro chat, encantado de recibirte.')
     
     }else{ // Si no recibimos un mensaje de comando mandamos directamente un eco del mensaje para mostrar a los usuarios
         io.send(msg);
+       
     }
  
     

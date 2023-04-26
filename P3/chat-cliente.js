@@ -30,14 +30,15 @@ socket.on("message", (msg)=>{
     display.innerHTML += '<p style="color:green">' + '· Te has registrado en el chat como: ' + username +'</p>';
 
   }else if (msg !==username){
-    display.innerHTML += '<p style="color:blue">' + '· ' + username + ": " + msg + '</p>';
+    display.innerHTML += '<p style="color:blue">' + '· ' + msg + '</p>';
   }
 });
 
 
 msgentry.onchange = () => {
     if (msgentry.value)
-      socket.send(msgentry.value);
+    mensaje = username + ":" + msgentry.value;
+    socket.send(mensaje);
     
     // Borrar el mensaje actual
     msgentry.value = "";
