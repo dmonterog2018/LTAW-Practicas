@@ -10,6 +10,7 @@ const info1 = document.getElementById("info1");
 const info2 = document.getElementById("info2");
 const info3 = document.getElementById("info3");
 const info4 = document.getElementById("info4");
+const qr = document.getElementById("qr");
 
 //-- Acceder a la API de node para obtener la info
 //-- Sólo es posible si nos han dado permisos desde
@@ -17,20 +18,20 @@ const info4 = document.getElementById("info4");
 info1.textContent = process.versions.node;
 info2.textContent = process.versions.chrome;
 info3.textContent = process.versions.electron;
-info4.textContent = 'http://' + ip.address() + ':9000/chat.html';
-
+qrdata = qrCodeText + ':9000/chat.html';
+info4.href = qrdata;
+info4.textContent = qrCodeText + ':9000/chat.html';
 
 btn_test.onclick = () => {
     display.innerHTML += "TEST! ";
     console.log("Botón apretado!");
     
 }
-
-
-qrcode.toString(qrCodeText, { type: 'terminal' }, (err, qrCode) => {
+qrcode.toDataURL(qrdata, (err, qrCodeDataURL) => {
   if (err) {
-    console.error(err);
+    console.log(err);
   } else {
-    console.log(qrCode);
+    qr.setAttribute('src', qrCodeDataURL);
   }
 });
+

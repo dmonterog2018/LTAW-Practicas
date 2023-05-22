@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="stylesheet" type="text/css" href="chat.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BIENVENIDO AL CHATPELINPE</title>
+
+  <!-- Cargar la biblioteca Socket.IO. Nos la debe entregar el servidor -->
+  <script src="/socket.io/socket.io.js"></script>
+
+   
+
+  <!-- Cliente que usa los Sockets.io-->
+  <script src="chat-cliente.js" defer></script>
+</head>
+
+<body>
+    
+  <h1>BIENVENIDO AL CHATPELINPE</h1>
+  <h2>INTRODUCE EL USUARIO: <input type="text" id="usuario" name="usuario"> </h2>
+    <input type="text" placeholder="Escribe aquí los mensajes..." autocomplete="off" id="msgentry">
+    <h3>Mensajes recibidos</h3>
+    <p id="display"></p>
+</body> 
+</html>

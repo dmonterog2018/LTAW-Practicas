@@ -1,0 +1,54 @@
+@font-face
+{
+   font-family: "monaco";
+   src: url("monaco.ttf");
+}
+body {
+    background-image: url('fondochat4.jpg');
+    background-size: cover;
+   
+  }
+
+h1 {
+    font-family: 'monaco';
+    font-size:40px;
+    display: block;
+    margin-left: 21cm;
+
+}
+h2 {
+  font-family: 'monaco';
+  font-size:40px;
+  display: block;
+  margin-left: 21cm;
+
+}
+h3 {
+  margin-top: 1.7cm;
+    font-family: 'monaco';
+    font-size:40px;
+    display: block;
+    margin-left: 22cm;
+
+}
+
+#display {
+    
+    border: 3px solid black;
+    border-style: dashed;
+    padding: 10px;
+    background-color: transparent;
+    height:500px;
+    overflow-y: scroll;
+}
+
+#msgentry {
+  border: 2px solid #4CAF50;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 18px;
+  color: #333;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  margin-left: 22cm;
+}

@@ -7,13 +7,16 @@
 
     <!-- Permitir sólo scripts y ficheros de la máquina local -->
     <!-- Con esto se elimina el aviso de seguridad: Insecure Content-Security-Policy -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self';" />
+
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src data:;">
 
     <!-- Hoja de estilo de la interfaz -->
     <link rel="stylesheet" href="style.css">
 
     <!-- Cargar el proceso asociado a esta página -->
     <script src="index.js" defer></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="chat-cliente.js" defer></script>
 
     <title>Mi APP (version 9)</title>
 </head>
@@ -28,10 +31,11 @@
         <li>Version de chrome: <span id="info2" class="blue"></span></li>
         <li>Version de electron: <span id="info3" class="blue"></span></li>
     </ul>
-    <p>Dirección IP:<span id="info4" class="blue"></span> </p>
+    <p>Dirección IP: <a href="#" id="info4" class="blue"></a></p>
+    <p>QR CODE:<img id="qr" class="qr" /> </p>
     <hr>
     <p>   <input type="button" value="Test" id="btn_test"> </p>
-   <p>Display:</p>
+    <h3>Mensajes recibidos</h3>
     <p id="display"></p>
 </body>
 </html>

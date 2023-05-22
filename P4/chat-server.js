@@ -13,7 +13,7 @@ const app = express();
 //-- Crear un servidor, asosiaco a la App de express
 const server = http.Server(app);
 
-//-- Crear el servidor de websockets, asociado al servidor httpS
+//-- Crear el servidor de websockets, asociado al servidor http
 const io = new socketServer(server);
 
 //-------- PUNTOS DE ENTRADA DE LA APLICACION WEB

@@ -4,11 +4,15 @@
     "version": "0.1.0",
     "main": "main.js",
     "scripts": {
-        "start": "electron ."
+        "start": "electron .",
+        "server": "chat-server-js"
     },
     "dependencies": {
+        "colors": "^1.4.0",
         "electron": "^24.1.3",
+        "express": "^4.18.2",
         "ip": "^1.1.8",
-        "qrcode": "^1.5.3"
+        "qrcode": "^1.5.3",
+        "socket.io": "^4.6.1"
     }
 }
