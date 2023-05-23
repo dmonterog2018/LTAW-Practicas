@@ -1,29 +1,6 @@
 const electron = require('electron');
 
 
-console.log("Arrancando electron...");
-
-electron.app.on('ready', () => {
-    console.log("Evento Ready!");
-
-    //-- Crear la ventana principal de nuestra aplicación
-    win = new electron.BrowserWindow({
-        width: 600,   //-- Anchura 
-        height: 600,  //-- Altura
-
-        //-- Permitir que la ventana tenga ACCESO AL SISTEMA
-        webPreferences: {
-          nodeIntegration: true,
-          contextIsolation: false
-        }
-    });
-
-  
-    
-    win.loadFile('index.html');
-    
-});
-
 // MAIN
 
 //-- Cargar las dependencias
@@ -31,8 +8,9 @@ const socketServer = require('socket.io').Server;
 const http = require('http');
 const express = require('express');
 const colors = require('colors');
+const ip = require('ip');
 const currentDate = new Date();
-const PUERTO = 9001;
+const PUERTO = 9000;
 
 
 //-- Crear una nueva aplciacion web
@@ -47,11 +25,13 @@ const io = new socketServer(server);
 //-------- PUNTOS DE ENTRADA DE LA APLICACION WEB
 //-- Definir el punto de entrada principal de mi aplicación web
 app.get('/', (req, res) => {
-    res.redirect('/chat.html');
-  });
+  let path = __dirname + '/chat.html';
+  res.sendFile(path);
+  console.log("Acceso a " + path);
+});
 
-//-- Esto es necesario para que el servidor le envíe al cliente la
-//-- biblioteca socket.io para el cliente
+
+//-- El resto de peticiones como ficheros estáticos
 app.use('/', express.static(__dirname +'/'));
 
 //-- El directorio publico contiene ficheros estáticos
@@ -94,6 +74,7 @@ io.on('connect', (socket) => {
     
     }else{ // Si no recibimos un mensaje de comando mandamos directamente un eco del mensaje para mostrar a los usuarios
         io.send(msg);
+        win.webContents.send('print', msg);
        
     }
  
@@ -101,6 +82,42 @@ io.on('connect', (socket) => {
   });
 
 });
+console.log("Arrancando electron...");
+console.log(ip.address());
+
+electron.app.on('ready', () => {
+    console.log("Evento Ready!");
+
+    //-- Crear la ventana principal de nuestra aplicación
+    win = new electron.BrowserWindow({
+        width: 600,   //-- Anchura 
+        height: 600,  //-- Altura
+
+        //-- Permitir que la ventana tenga ACCESO AL SISTEMA
+        webPreferences: {
+          nodeIntegration: true,
+          contextIsolation: false
+        }
+    });
+
+  
+    
+    win.loadFile('index.html');
+    win.on('ready-to-show', () => {
+      win.webContents.send('ip', 'http://' + ip.address() + ':' + PUERTO);
+    });
+    
+    electron.ipcMain.handle('test', async(event, mensaje) => {
+      console.log("-> Mensaje: " + mensaje);
+      //-- Enviar mensaje de prueba
+      io.send('Enviando TEST...', mensaje);
+      win.webContents.send('print', 'Enviando TEST...');
+    
+    });
+
+});
+
+
 
 //-- Lanzar el servidor HTTP
 //-- ¡Que empiecen los juegos de los WebSockets!
