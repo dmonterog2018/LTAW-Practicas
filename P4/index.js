@@ -15,6 +15,8 @@ const info5 = document.getElementById("info5");
 const info6 = document.getElementById("info6");
 const info7 = document.getElementById("info7");
 const qr = document.getElementById("qr");
+const users = document.getElementById("users");
+
 
 //-- Acceder a la API de node para obtener la info
 //-- Sólo es posible si nos han dado permisos desde
@@ -27,6 +29,7 @@ info6.textContent = process.platform;
 info7.textContent = process.cwd();
 qrdata = qrCodeText + ':9000/chat.html';
 
+ users.innerHTML = 0;
 
 electron.ipcRenderer.on('ip', (event, msg) => {
   console.log("Recibida Ip: " + msg);
@@ -44,6 +47,12 @@ electron.ipcRenderer.on('print', (event, msg) => {
   console.log("Recibido: " + msg);
   display.innerHTML += msg + '</p>'; 
 });
+
+electron.ipcRenderer.on('usuarios', (event, msg) => {
+  console.log("Recibido: " + msg);
+  users.innerHTML = msg;
+});
+
 
 qrcode.toDataURL(qrdata, (err, qrCodeDataURL) => {
   if (err) {

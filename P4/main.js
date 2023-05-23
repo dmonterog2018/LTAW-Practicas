@@ -42,10 +42,12 @@ app.use(express.static('public'));
 io.on('connect', (socket) => {
   
   console.log('** NUEVA CONEXIÓN **'.yellow);
+  win.webContents.send('usuarios', io.engine.clientsCount);
 
   //-- Evento de desconexión
   socket.on('disconnect', function(){
     console.log('** CONEXIÓN TERMINADA **'.yellow);
+    win.webContents.send('usuarios', io.engine.clientsCount);
   });  
 
   //-- Tipos de mensaje que podemos recibir
@@ -114,6 +116,8 @@ electron.app.on('ready', () => {
       win.webContents.send('print', 'Enviando TEST...');
     
     });
+
+
 
 });
 
