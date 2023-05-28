@@ -45,7 +45,7 @@ io.on('connect', (socket) => {
     console.log("Mensaje Recibido!: " + msg.blue);
 
     if (msg.split("/")[1] == 'help') {
-        socket.send("La lista de comandos para nuestro chat son los siguientes: /list, /user, /hello y /date");
+        socket.send("La lista de comandos para nuestro chat son los siguientes: /list, /hour, /hello y /date");
     } else if(msg.split("/")[1] == 'list') {
       const users = 'Número de usuarios conectados: ' + io.engine.clientsCount;
       socket.send(users);
